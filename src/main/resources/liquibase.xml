@@ -1,0 +1,126 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="202007070900" author="Mounica, Sangita" context="POC">
+        <preConditions>
+            <not>
+                <tableExists tableName="consent_manager"/>
+            </not>
+        </preConditions>
+        <comment>Add consent_manager table</comment>
+
+        <createTable tableName="consent_manager">
+            <column name="id" autoIncrement="true" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="url" type="VARCHAR(256)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cm_id" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="suffix" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="active" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_created" type="DATETIME" defaultValueDate="timezone('utc'::text, now())">
+                <constraints nullable="false" />
+            </column>
+            <column name="date_modified" type="DATETIME" defaultValueDate="timezone('utc'::text, now())">
+                <constraints nullable="false" />
+            </column>
+            <column name="blocklisted" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="license" type="VARCHAR(256)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="licensingAuthority" type="VARCHAR(256)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202007070920" author="Mounica, Sangita" context="POC">
+        <preConditions>
+            <not>
+                <tableExists tableName="bridge"/>
+            </not>
+        </preConditions>
+        <comment>Add bridge table</comment>
+
+        <createTable tableName="bridge">
+            <column name="id" autoIncrement="true" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="url" type="VARCHAR(256)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="bridge_id" type="VARCHAR(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="active" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_created" type="DATETIME" defaultValueDate="timezone('utc'::text, now())">
+                <constraints nullable="false" />
+            </column>
+            <column name="date_modified" type="DATETIME" defaultValueDate="timezone('utc'::text, now())">
+                <constraints nullable="false" />
+            </column>
+            <column name="blocklisted" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202007070935" author="Mounica, Sangita" context="POC">
+        <preConditions>
+            <not>
+                <tableExists tableName="bridge_service"/>
+            </not>
+        </preConditions>
+        <comment>Add bridge_service table</comment>
+
+        <createTable tableName="bridge_service">
+            <column name="id" autoIncrement="true" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="bridge_id" type="VARCHAR(50)">
+                <constraints nullable="false"
+                             foreignKeyName="fk_bridge_service_bridge_id"
+                             references="bridge(bridge_id)"/>
+            </column>
+            <column name="type" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="register_time" type="DATETIME" defaultValueDate="timezone('utc'::text, now())">
+                <constraints nullable="false" />
+            </column>
+            <column name="date_created" type="DATETIME" defaultValueDate="timezone('utc'::text, now())">
+                <constraints nullable="false" />
+            </column>
+            <column name="date_modified" type="DATETIME" defaultValueDate="timezone('utc'::text, now())">
+                <constraints nullable="false" />
+            </column>
+            <column name="active" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint columnNames="bridge_id, type"
+                             constraintName="uk_bridge_service_bridge_id_type"
+                             tableName="bridge_service"/>
+    </changeSet>
+
+</databaseChangeLog>
