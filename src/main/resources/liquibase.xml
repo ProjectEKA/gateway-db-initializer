@@ -123,4 +123,10 @@
                              tableName="bridge_service"/>
     </changeSet>
 
+    <changeSet id="202007090805" author="Mounica" context="POC">
+        <renameColumn newColumnName="licensing_authority"
+                      oldColumnName="licensingAuthority"
+                      tableName="consent_manager"/>
+    </changeSet>
+
 </databaseChangeLog>
