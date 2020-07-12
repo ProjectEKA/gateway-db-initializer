@@ -131,16 +131,10 @@
 
     <changeSet id="202007121200" author="Mounica" context="POC">
         <addColumn tableName="bridge_service">
-            <column name="service_id" type="VARCHAR(50)">
+            <column name="service_id" type="VARCHAR(50)" defaultValue="">
                 <constraints nullable="false"/>
             </column>
         </addColumn>
-    </changeSet>
-
-    <changeSet id="202007122131" author="Mounica" context="POC">
-        <addDefaultValue tableName="bridge_service"
-                         columnName="service_id"
-                         defaultValue="" />
     </changeSet>
 
 </databaseChangeLog>
