@@ -129,4 +129,12 @@
                       tableName="consent_manager"/>
     </changeSet>
 
+    <changeSet id="202007121200" author="Mounica" context="POC">
+        <addColumn tableName="bridge_service">
+            <column name="service_id" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>
