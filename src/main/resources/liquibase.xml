@@ -137,4 +137,10 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="202007122131" author="Mounica" context="POC">
+        <addDefaultValue tableName="bridge_service"
+                         columnName="service_id"
+                         defaultValue="" />
+    </changeSet>
+
 </databaseChangeLog>
