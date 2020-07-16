@@ -137,4 +137,18 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="202007160754" author="Mounica" context="POC">
+        <addColumn tableName="bridge_service">
+            <column name="name" type="VARCHAR(50)" defaultValue="">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <dropUniqueConstraint constraintName="uk_bridge_service_bridge_id_type"
+                              uniqueColumns="bridge_id, type"
+                              tableName="bridge_service"/>
+        <addUniqueConstraint  columnNames="service_id, type"
+                              constraintName="uk_bridge_service_service_id_type"
+                              tableName="bridge_service"/>
+    </changeSet>
+
 </databaseChangeLog>
