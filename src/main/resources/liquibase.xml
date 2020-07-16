@@ -137,4 +137,15 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="20200716153" author="Sai">
+        <addUniqueConstraint
+                tableName="consent_manager"
+                constraintName="consent_manager_suffix"
+                columnNames="suffix" />
+        <addUniqueConstraint
+                tableName="consent_manager"
+                constraintName="consent_manager_cm_id"
+                columnNames="cm_id" />
+    </changeSet>
+
 </databaseChangeLog>
