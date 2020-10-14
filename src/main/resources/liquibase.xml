@@ -162,4 +162,11 @@
                 columnNames="cm_id" />
     </changeSet>
 
+    <changeSet id="202010130310" author="Mounica" context="POC">
+        <addColumn tableName="bridge_service">
+            <column name="endpoints" type="JSON">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>
