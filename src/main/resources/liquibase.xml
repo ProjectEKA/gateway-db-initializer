@@ -169,4 +169,24 @@
             </column>
         </addColumn>
     </changeSet>
+
+    <changeSet id="202011261122" author="Mounica" context="POC">
+        <addColumn tableName="bridge_service">
+            <column name="is_hip" type="BOOLEAN">
+                <constraints nullable="true"/>
+            </column>
+            <column name="is_hiu" type="BOOLEAN">
+                <constraints nullable="true"/>
+            </column>
+            <column name="is_health_locker" type="BOOLEAN">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+<!--        <dropUniqueConstraint constraintName="uk_bridge_service_service_id_type"-->
+<!--                              uniqueColumns="service_id, type"-->
+<!--                              tableName="bridge_service"/>-->
+<!--        <dropNotNullConstraint columnDataType="VARCHAR(50)"-->
+<!--                               columnName="type"-->
+<!--                               tableName="bridge_service"/>-->
+    </changeSet>
 </databaseChangeLog>
