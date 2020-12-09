@@ -170,8 +170,36 @@
         </addColumn>
     </changeSet>
 
-    <changeSet id="202011261122" author="Mounica" context="POC">
-        <addColumn tableName="bridge_service">
+    <changeSet id="202012081730" author="Mounica" context="POC">
+        <renameTable  newTableName="bridge_service_old"
+                      oldTableName="bridge_service"/>
+        <dropPrimaryKey  constraintName="pk_bridge_service"
+                         tableName="bridge_service_old"/>
+    </changeSet>
+
+    <changeSet id="202012090756" author="Mounica" context="POC">
+        <preConditions>
+            <not>
+                <tableExists tableName="bridge_service"/>
+            </not>
+        </preConditions>
+        <comment>Add bridge_service table</comment>
+
+        <createTable tableName="bridge_service">
+            <column name="id" autoIncrement="true" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="bridge_id" type="VARCHAR(50)">
+                <constraints nullable="false"
+                             foreignKeyName="fk_bridge_service_bridge_id"
+                             references="bridge(bridge_id)"/>
+            </column>
+            <column name="service_id" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="true"/>
+            </column>
             <column name="is_hip" type="BOOLEAN">
                 <constraints nullable="true"/>
             </column>
@@ -181,12 +209,25 @@
             <column name="is_health_locker" type="BOOLEAN">
                 <constraints nullable="true"/>
             </column>
-        </addColumn>
-<!--        <dropUniqueConstraint constraintName="uk_bridge_service_service_id_type"-->
-<!--                              uniqueColumns="service_id, type"-->
-<!--                              tableName="bridge_service"/>-->
-<!--        <dropNotNullConstraint columnDataType="VARCHAR(50)"-->
-<!--                               columnName="type"-->
-<!--                               tableName="bridge_service"/>-->
+            <column name="endpoints" type="JSON">
+                <constraints nullable="true"/>
+            </column>
+            <column name="active" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="register_time" type="DATETIME" defaultValueDate="timezone('utc'::text, now())">
+                <constraints nullable="false" />
+            </column>
+            <column name="date_created" type="DATETIME" defaultValueDate="timezone('utc'::text, now())">
+                <constraints nullable="false" />
+            </column>
+            <column name="date_modified" type="DATETIME" defaultValueDate="timezone('utc'::text, now())">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        <addUniqueConstraint columnNames="bridge_id, service_id"
+                             constraintName="uk_bridge_service_bridge_id_service_id"
+                             tableName="bridge_service"/>
     </changeSet>
+
 </databaseChangeLog>
