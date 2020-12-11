@@ -175,6 +175,8 @@
                       oldTableName="bridge_service"/>
         <dropPrimaryKey  constraintName="pk_bridge_service"
                          tableName="bridge_service_old"/>
+        <dropForeignKeyConstraint  baseTableName="bridge_service_old"
+                                   constraintName="fk_bridge_service_bridge_id"/>
     </changeSet>
 
     <changeSet id="202012090756" author="Mounica" context="POC">
@@ -197,21 +199,11 @@
             <column name="service_id" type="VARCHAR(50)">
                 <constraints nullable="false"/>
             </column>
-            <column name="name" type="VARCHAR(50)">
-                <constraints nullable="true"/>
-            </column>
-            <column name="is_hip" type="BOOLEAN">
-                <constraints nullable="true"/>
-            </column>
-            <column name="is_hiu" type="BOOLEAN">
-                <constraints nullable="true"/>
-            </column>
-            <column name="is_health_locker" type="BOOLEAN">
-                <constraints nullable="true"/>
-            </column>
-            <column name="endpoints" type="JSON">
-                <constraints nullable="true"/>
-            </column>
+            <column name="name" type="VARCHAR(50)"/>
+            <column name="is_hip" type="BOOLEAN"/>
+            <column name="is_hiu" type="BOOLEAN"/>
+            <column name="is_health_locker" type="BOOLEAN"/>
+            <column name="endpoints" type="JSON"/>
             <column name="active" type="BOOLEAN">
                 <constraints nullable="false"/>
             </column>
