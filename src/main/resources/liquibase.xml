@@ -221,5 +221,10 @@
                              constraintName="uk_bridge_service_bridge_id_service_id"
                              tableName="bridge_service"/>
     </changeSet>
-
+    <changeSet id="202101201225" author="Dubey" context="gateway">
+        <modifyDataType
+            columnName="name"
+            newDataType="varchar(250)"
+            tableName="bridge"/>
+    </changeSet>   
 </databaseChangeLog>
