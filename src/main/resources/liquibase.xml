@@ -221,7 +221,7 @@
                              constraintName="uk_bridge_service_bridge_id_service_id"
                              tableName="bridge_service"/>
     </changeSet>
-    <changeSet author="202101201225" author="Dubey" id="gateway_db">
+    <changeSet id="202101201225" author="Dubey" context="gateway">
         <modifyDataType
             columnName="name"
             newDataType="varchar(250)"
