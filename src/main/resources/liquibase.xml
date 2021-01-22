@@ -227,4 +227,10 @@
             newDataType="varchar(250)"
             tableName="bridge"/>
     </changeSet>   
+    <changeSet id="202101221840" author="Dubey" context="gateway">
+        <modifyDataType
+            columnName="name"
+            newDataType="varchar(250)"
+            tableName="bridge_service"/>
+    </changeSet>   
 </databaseChangeLog>
